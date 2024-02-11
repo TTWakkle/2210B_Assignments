@@ -1,13 +1,13 @@
 public class Data {
     //Declaring local fields of the Data object
         private String config;
-        private Integer score;
+        private int score;
     
     //Default constructor for the Data object
         public Data(){
             //all undefined data objects are null if no arguement is passed during construction
                 config = null;
-                score = null;
+                score = 0;
         }
 
     //Constructor that requires two arguements: config, and score
