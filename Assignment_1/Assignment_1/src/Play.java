@@ -56,13 +56,15 @@ public class Play extends JFrame {
     {
 
         /* Check that the number of arguments is the correct one */
+		//args = new String[]{"3","3","3"};
+	
+	String[] args2 = {"3", "3", "4"};
+	args = args2;
 	if (args.length != 3) {
 	    System.out.println
 		("Usage: java Play board-size shape-length depth");
 	    System.exit(0);
 	}
-//	String[] args2 = {"5", "5", "4"};
-//	args = args2;
         /* Size of the game board */
 	int size = Integer.parseInt(args[0]);
 

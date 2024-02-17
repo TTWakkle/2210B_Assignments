@@ -4,15 +4,10 @@ import java.util.LinkedList;
 public class HashDictionary implements DictionaryADT {
     //Declaring local fields of the HashDictionary object
         private LinkedList<Data>[] hashTable;
-        private static int PRIME = 1543;    //1543 has given me great results
+        private static int PRIME = 53;    //1543 has given me great results
         private int HASH_SIZE, storedRecords;
 
-    //Generic constructor of the HashDictionary object
-        public HashDictionary(){
-            //undefined
-        }
-
-    /**Constructor of the HashDictionary object that requires 1 arguement: size         TODO: ask what he means about returning
+    /**Constructor of the HashDictionary object that requires 1 arguement: size
      * @param size */
         public HashDictionary(int size){
             HASH_SIZE = size;
@@ -41,7 +36,6 @@ public class HashDictionary implements DictionaryADT {
     /**Accessor method that puts an item (of type Data) somewhere into the 
      * HashDictionary Object, by utilizing the hash() method
      * @param record */
-        @Override
         public int put(Data record) throws DictionaryException {
             //generating a hash value for the provided data
                 int hashCode = hash(record.getConfig());
@@ -60,7 +54,6 @@ public class HashDictionary implements DictionaryADT {
                             throw new DictionaryException();
                         }
                     }
-                    //throw new DictionaryException();              TODO: ask prof about this
                     hashTable[hashCode].add(record);
                     storedRecords++;
                     return 1;
@@ -70,7 +63,6 @@ public class HashDictionary implements DictionaryADT {
     /**Accessor methot that removes an item (of type Data) from the HashDictionary 
      * based on the hashed integer value of a given string
      * @param config */
-        @Override
         public void remove(String config) throws DictionaryException {
             //generating a hash value for the provided data
                 int hashCode = hash(config);
@@ -90,8 +82,10 @@ public class HashDictionary implements DictionaryADT {
                     throw new DictionaryException();
                 }
         }
-    //Helper method that returns the hash code of a Data item based on a given string
-        @Override
+    
+        
+    /**Helper method that returns the score of a Data item based on a given string
+     * @param config */
         public int get(String config) {
             //generating a hash value for the provided data
             int hashCode = hash(config);
@@ -110,7 +104,6 @@ public class HashDictionary implements DictionaryADT {
         }
 
     /**Helper method that returns the number of Data objects stored in the hashTable*/
-        @Override
         public int numRecords() {
             return storedRecords;
         }
