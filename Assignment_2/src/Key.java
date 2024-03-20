@@ -1,7 +1,7 @@
 public class Key {
     //declaring local instance variables
-        String label;
-        int type;
+        private String label;
+        private int type;
     //Constructor method to initialize the Key Obj
         public Key(String theLabel, int theType){
             label = theLabel.toLowerCase();

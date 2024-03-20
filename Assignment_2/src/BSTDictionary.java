@@ -1,38 +1,37 @@
 public class BSTDictionary implements BSTDictionaryADT {
+        
+    //
+        public Record get(Key k) {
 
-    public Record get(Key k) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
-    }
+        }
 
-    public void put(Record d) throws DictionaryException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'put'");
-    }
+    //put
+        public void put(Record d) throws DictionaryException {
 
-    public void remove(Key k) throws DictionaryException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
-    }
+        }
 
-    public Record successor(Key k) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'successor'");
-    }
+    //remove 
+        public void remove(Key k) throws DictionaryException {
 
-    public Record predecessor(Key k) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'predecessor'");
-    }
-
-    public Record smallest() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'smallest'");
-    }
-
-    public Record largest() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'largest'");
-    }
+        }
     
+    //successor
+        public Record successor(Key k) {
+
+        }
+
+    //predecessor
+        public Record predecessor(Key k) {
+
+        }
+    
+    //smallest
+        public Record smallest(){
+
+        }
+    
+    //largest
+        public Record largest(){
+
+        }
 }

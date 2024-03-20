@@ -1,7 +1,7 @@
 public class Record {
     //declaring local instance variables
-        Key theKey;
-        String data;
+        private Key theKey;
+        private String data;
 
     //Constructor method of the Record object
         public Record(Key k, String theData){
