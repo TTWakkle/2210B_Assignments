@@ -1,5 +1,8 @@
 public class BSTDictionary implements BSTDictionaryADT {
-        
+    //Constructor of the BST Dictionary   
+        public BSTDictionary(){
+
+       } 
     //
         public Record get(Key k) {
 
@@ -22,7 +25,7 @@ public class BSTDictionary implements BSTDictionaryADT {
 
     //predecessor
         public Record predecessor(Key k) {
-
+e
         }
     
     //smallest

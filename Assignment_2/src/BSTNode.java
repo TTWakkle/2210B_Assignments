@@ -40,11 +40,13 @@ public class BSTNode {
     //setter method that defines the left child of the current BSTN 
         public void setLeftChild(BSTNode u){
             leftChild = u;
+            leftChild.setParent(u);
         }
 
     //setter method that defines the right child of the current BSTN
         public void setRightChild(BSTNode u){
             rightChild = u;
+            rightChild.setParent(u);
         }
 
     //setter method that defines the parent of the current BSTN

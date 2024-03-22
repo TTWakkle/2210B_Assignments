@@ -2,11 +2,9 @@ public class BinarySearchTree {
     //declaring local instance variables
         BSTNode rootNode;
 
-    //Constructor class of the BST object
+    //Constructor class of the BST object, This creates a null node and sets it as the root, defining an 'empty' BST
         public BinarySearchTree(){
-            rootNode = new BSTNode(null);
-            rootNode.setLeftChild(new BSTNode(null));
-            rootNode.setRightChild(new BSTNode(null));
+            rootNode = null;
         }
     
     //Accessor method that returns the root node of a BST
@@ -16,12 +14,14 @@ public class BinarySearchTree {
     
     //Accessor method that searches through a BST for where an item could be stored, will return an empty node, or a leaf's child, if the item does not exist  
         public BSTNode get(BSTNode r, Key k){
+            if(rootNode ==  null)
+                return null;
             if (r.isLeaf())
                 return r;
             else{
                 if (r.getRecord().getKey() == k)
                     return r;
-                else if (r.getRecord().getKey().getType() < k.getType()/*TODO: NOT SUPPOSED TO BE K.TYPE, TALK TO SOMEONE!! */)
+                else if (Integer.parseInt(r.getRecord().getKey().getLabel()) < Integer.parseInt(k.getLabel())) /*TODO: i have zero clue how they're meant to be ordered in the BST, TALK TO SOMEONE!! */
                     return get(r.getRightChild(), k);
                 else
                     return get(r.getLeftChild(), k);
@@ -29,45 +29,65 @@ public class BinarySearchTree {
 
         }
 
-    //see lecture notes for the put() function
+    //This function inserts a node into the tree, utilizing the get() function to determine where it exists
         public boolean insert (BSTNode r, Key k){
-            BSTNode p = new BSTNode(null);
-            p = get(r, k);
-            if (!p.isLeaf())
-                return false;
-            else{
-                p.getRecord().getKey() = k; // should i kill myself?
-                p.setLeftChild(new BSTNode(null));
-                p.setRightChild(new BSTNode(null));
-                return true;
-            }
+            //checking whether the tree is empty or not
+                if (rootNode == null){
+                    rootNode = r;
+                    return true;
+                }
+            //inserting based on where get() dictates a node should be placed
+                BSTNode p = new BSTNode(null);
+                p = get(r, k);
+                
+                if (!p.isLeaf())
+                    return false; //OR throw new DictionaryException("Item already exists in BST")
+                else{
+                    p.setRecord(r.getRecord());
+                    p.setLeftChild(new BSTNode(null));
+                    p.setRightChild(new BSTNode(null));
+                    return true;
+                }
         }   
     
     //Accessor method that removes an item from the BST
-        public void remove(BSTNode r, Key k){
+        public void remove(BSTNode r, Key k) throws DictionaryException{
             BSTNode p = new BSTNode(null);
             p = get(r, k);
             if(p.isLeaf())
-                return;//throw new DictionaryException("die");
+                throw new DictionaryException("item does not exist in BST");
             else {
+                BSTNode c = new BSTNode(null);
+                BSTNode pp = new BSTNode(null);
                 if (p.getLeftChild().isLeaf()){
-                    BSTNode c = new BSTNode(null);
-                    BSTNode pp = new BSTNode(null);
                     c = p.getRightChild();
                     pp = p.getParent();
-                    if(pp != null)
-                        pp.setRightChild(c);    //TODO: i have no idea which child c should be
+                    if(pp != null) {
+                        if(Integer.parseInt(pp.getRecord().getKey().getLabel()) < Integer.parseInt(c.getRecord().getKey().getLabel()))    //TODO: i have no idea which child c should be
+                            pp.setRightChild(c);
+                        else
+                            pp.setLeftChild(c);
+                    }
                     else
                         rootNode = c;
                     return; // die die die
                 }
                 else if(p.getRightChild().isLeaf()){
-                    //same as above but for the left child [?]
+                    c = p.getLeftChild();
+                    pp = p.getParent();
+                    if(pp != null){
+                        if(Integer.parseInt(pp.getRecord().getKey().getLabel()) < Integer.parseInt(c.getRecord().getKey().getLabel()))  //kill me please
+                            pp.setRightChild(c);
+                        else
+                            pp.setLeftChild(c);
+                    }    
+                    else
+                        rootNode = c;
                 }
                 else{
                     BSTNode s = new BSTNode(null);
                     s = smallest(p.getRightChild());
-                    p.getRecord() = s.getRecord();
+                    p.setRecord(s.getRecord());
                     remove(s, s.getRecord().getKey());
                 }
             }
@@ -83,7 +103,7 @@ public class BinarySearchTree {
                 return smallest(p.getRightChild());
             else {
                 p = p.getParent();
-                while (p != null && p.getRecord().getKey().getType() < k.getType()/*TODO: figure out how theyre actually being inserted and arranged into the BST, cuz its not based on type.*/){
+                while (p != null && Integer.parseInt(p.getRecord().getKey().getLabel()) < Integer.parseInt(k.getLabel())/*TODO: figure out how theyre actually being inserted and arranged into the BST, cuz its not based on type.*/){
                     p = p.getParent();
                 }
                 return p;
@@ -98,7 +118,7 @@ public class BinarySearchTree {
                 return largest(p.getLeftChild());
             else {
                 p = p.getParent();
-                while(p != null && p.getRecord().getKey().getType() > k.getType()){
+                while(p != null && Integer.parseInt(p.getRecord().getKey().getLabel()) > Integer.parseInt(k.getLabel())){
                     p = p.getParent();
                 }
                 return p;
