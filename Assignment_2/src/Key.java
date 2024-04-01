@@ -25,7 +25,7 @@ public class Key {
         public int compareTo(Key k){
             if(label == k.getLabel() && type == k.getType())
                 return 0;
-            else if( (label == k.getLabel() && type < k.getType()) || Integer.parseInt(label) < Integer.parseInt(k.getLabel()) ) //TODO: figure out what he means by "A.label lexicographically precedes B.label"
+            else if( (label.compareTo(k.getLabel()) == -1) || (label == k.getLabel() && type <k.getType()) )
                 return -1;
             else
                 return 1;

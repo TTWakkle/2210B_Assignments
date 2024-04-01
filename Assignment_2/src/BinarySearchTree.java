@@ -21,7 +21,7 @@ public class BinarySearchTree {
             else{
                 if (r.getRecord().getKey() == k)
                     return r;
-                else if (Integer.parseInt(r.getRecord().getKey().getLabel()) < Integer.parseInt(k.getLabel())) /*TODO: i have zero clue how they're meant to be ordered in the BST, TALK TO SOMEONE!! */
+                else if (Integer.parseInt(r.getRecord().getKey().getLabel()) < Integer.parseInt(k.getLabel())) /*(alphabettically, use compareTo()-- in class Key ) */
                     return get(r.getRightChild(), k);
                 else
                     return get(r.getLeftChild(), k);
@@ -63,20 +63,19 @@ public class BinarySearchTree {
                     c = p.getRightChild();
                     pp = p.getParent();
                     if(pp != null) {
-                        if(Integer.parseInt(pp.getRecord().getKey().getLabel()) < Integer.parseInt(c.getRecord().getKey().getLabel()))    //TODO: i have no idea which child c should be
+                        if(Integer.parseInt(pp.getRecord().getKey().getLabel()) < Integer.parseInt(c.getRecord().getKey().getLabel()))    //TODO: i have no idea which child c should be(successor if present, predeccessor otherwise)
                             pp.setRightChild(c);
                         else
                             pp.setLeftChild(c);
                     }
                     else
                         rootNode = c;
-                    return; // die die die
                 }
                 else if(p.getRightChild().isLeaf()){
                     c = p.getLeftChild();
                     pp = p.getParent();
                     if(pp != null){
-                        if(Integer.parseInt(pp.getRecord().getKey().getLabel()) < Integer.parseInt(c.getRecord().getKey().getLabel()))  //kill me please
+                        if(Integer.parseInt(pp.getRecord().getKey().getLabel()) < Integer.parseInt(c.getRecord().getKey().getLabel()))  //TODO: rewrite
                             pp.setRightChild(c);
                         else
                             pp.setLeftChild(c);
@@ -103,7 +102,7 @@ public class BinarySearchTree {
                 return smallest(p.getRightChild());
             else {
                 p = p.getParent();
-                while (p != null && Integer.parseInt(p.getRecord().getKey().getLabel()) < Integer.parseInt(k.getLabel())/*TODO: figure out how theyre actually being inserted and arranged into the BST, cuz its not based on type.*/){
+                while (p != null && p.getRecord().getKey().getLabel().compareTo(k.getLabel())  == -1){/*TODO:(based alphabetically, meaning if r is cat, dog is right child, bee is left child)*/
                     p = p.getParent();
                 }
                 return p;
@@ -118,7 +117,7 @@ public class BinarySearchTree {
                 return largest(p.getLeftChild());
             else {
                 p = p.getParent();
-                while(p != null && Integer.parseInt(p.getRecord().getKey().getLabel()) > Integer.parseInt(k.getLabel())){
+                while(p != null && p.getRecord().getKey().getLabel().compareTo(k.getLabel())  == 1){ //TODO: rewrite this
                     p = p.getParent();
                 }
                 return p;

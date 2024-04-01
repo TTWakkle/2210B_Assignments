@@ -8,7 +8,9 @@
 
     //put
         public void put(Record d) throws DictionaryException {
-            bst.insert(bst.getRoot(), d.getKey()); 
+            if(!bst.insert(bst.getRoot(), d.getKey())){
+                throw new DictionaryException("Error: Item already exists in BST");
+            }
         }
 
     //remove 

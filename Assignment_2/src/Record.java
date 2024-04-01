@@ -6,7 +6,7 @@ public class Record {
     //Constructor method of the Record object
         public Record(Key k, String theData){
             theKey = k;
-            data = theData.toLowerCase();
+            data = theData;
         }
 
     //Accesssor method for the Key instance variable
