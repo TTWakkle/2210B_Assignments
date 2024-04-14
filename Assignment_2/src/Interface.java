@@ -2,9 +2,15 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Interface {
-    //This function Acts as a switchgate to determine which operation the program should run
+    /**This function Acts as a switchgate to determine which
+     * operation the program should run.
+     * @param line
+     * @param bst
+     * @return   true if & only if the user entered "exit", otherwise false */
         private static boolean commandGate(String line, BSTDictionary bst){
             boolean tp = false;
             String[] commands = line.split(" "); 
@@ -37,10 +43,11 @@ public class Interface {
                     delete(new Key(commands[1], Integer.parseInt(commands[2])), bst );
                     break;
                 case "add":
-                    add(new Record(new Key(commands[1], Integer.parseInt(commands[2])), sumCommands(commands)), bst);  //TODO: see above, anything afterwards needs to be grouped 
+                    add(new Record(new Key(commands[1], Integer.parseInt(commands[2])), sumCommands(commands)), bst); 
                     break;
                 case "list":
-                    list(commands[1], bst);
+                    List<String> labels = new ArrayList<>();
+                    list(commands[1],labels, bst);
                     break;
                 case "first":
                     first(bst);
@@ -70,6 +77,7 @@ public class Interface {
             }
             return data;
         }
+
     /**
      * 
      * @param line
@@ -102,6 +110,7 @@ public class Interface {
             }
             return type;
         }
+
     /**This function prints the data attribute that's 
      * a String containing a definition (type 1) of the provided label
      * @param label
@@ -115,6 +124,7 @@ public class Interface {
             else
                 System.out.println("The word " + label + " is not in the ordered Dictionary");
         }
+
     /**This function prints the data attribute that's 
      * a String containing a translation (type 2) of the provided label
      * @param label 
@@ -128,6 +138,7 @@ public class Interface {
             else
                 System.out.println("There is no definition for the word " + label);
         }
+
     /**This function plays the audio file that's a
      * sound (type 3) based on the provided label 
      * @param label 
@@ -147,6 +158,7 @@ public class Interface {
             else
                 System.out.println("There is no sound file for " + label);
         }
+
     /**This function plays an audio file that's a
      * song (type 4) based on the provided label
      * @param label 
@@ -166,6 +178,7 @@ public class Interface {
             else
                 System.out.println("There is no music file for " + label);
         }
+
     /**This function plays an audio file that's a 
      * vocal recording (type 5) based on the provided label
      * @param label 
@@ -185,6 +198,7 @@ public class Interface {
             else
                 System.out.println("There is no voice file for " + label);
         }
+        
     /**This function displays an image that's a
      * jpg (Type 6) based on the provided label
      * @param label 
@@ -204,6 +218,7 @@ public class Interface {
             else
                 System.out.println("There is no image file for " + label);
         }
+
     /**this function displays an animated image that's
      * a gif (Type 7) based on the provided label
      * @param label 
@@ -223,6 +238,7 @@ public class Interface {
             else
                 System.out.println("There is no animated image file for " + label);
         }
+
     /**This function will open a webpage of an html
      * file (Type 8) based on the provided label
      * @param label 
@@ -236,14 +252,25 @@ public class Interface {
             else
                 System.out.println("There is no webpage called " + label);
         }
+
     /**This function will search through the bst for any items that 
      * have a label starting with the given prefix, and display their labels
      * @param prefix 
      * @param bst */
-        private static void list(String prefix, BSTDictionary bst){
-            String lp = new String();
-            lp.endsWith("");
+        private static void list(String prefix, List<String> labels, BSTDictionary bst){
+            bst.get(new Key(prefix, 0))
+
+
+
+
+
+
+
+
+
+            
         }
+
     /**This function prints all the attributes of a Record 
      * in the BST with the smallest key
      * @param bst */
@@ -252,6 +279,7 @@ public class Interface {
             rec = bst.smallest();
             System.out.println(rec.getKey().getLabel() + ", " + rec.getKey().getType() + ", " + rec.getDataItem());
         }
+
     /**This function prints all the attributes of a Record
      * in the BST with the largest key
      * @param bst */
@@ -260,6 +288,7 @@ public class Interface {
             rec = bst.largest();
             System.out.println(rec.getKey().getLabel() + ", " + rec.getKey().getType() + ", " + rec.getDataItem());
         }
+
     /**This function attempts to remove a Record that matches
      * the provided key from the BST
      * @param k
@@ -270,8 +299,8 @@ public class Interface {
             } catch(DictionaryException e){
                 System.out.println("No record in the ordered dictionary has Key ("+k.getLabel()+","+k.getType()+")");
             }
-            
         }
+
     /**This function attepmts to insert a Record into the BST
      * @param obj
      * @param bst */
@@ -282,6 +311,7 @@ public class Interface {
                 System.out.println("A record with the given key ("+obj.getKey().getLabel()+","+obj.getKey().getType()+") is already in the ordered dictionary");
             }
         }
+
     //Main method
         public static void main(String[] args){
             //declaring and initialisng local variables

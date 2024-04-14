@@ -8,7 +8,8 @@
 
     //put
         public void put(Record d) throws DictionaryException {
-            if(!bst.insert(bst.getRoot(), d.getKey())){
+            BSTNode node = new BSTNode(d);
+            if(!bst.insert(node, d.getKey())){
                 throw new DictionaryException("Error: Item already exists in BST");
             }
         }
