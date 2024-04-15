@@ -258,7 +258,7 @@ public class Interface {
      * @param prefix 
      * @param bst */
         private static void list(String prefix, List<String> labels, BSTDictionary bst){
-            bst.get(new Key(prefix, 0))
+            bst.get(new Key(prefix, 0));
 
 
 

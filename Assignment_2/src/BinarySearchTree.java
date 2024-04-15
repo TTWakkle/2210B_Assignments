@@ -62,7 +62,7 @@ public class BinarySearchTree {
         public void remove(BSTNode r, Key k) throws DictionaryException{
             BSTNode p =  new BSTNode(null);
             p = get(r, k);
-            if (p.isLeaf())
+            if (p.getRecord() == null)
                 throw new DictionaryException("Item does not exist in BST");
             else{
                 BSTNode c = new BSTNode(null);
@@ -107,7 +107,7 @@ public class BinarySearchTree {
         public BSTNode successor(BSTNode r, Key k){
             BSTNode p = new BSTNode(null);
             p = get(rootNode, k);
-            if(!p.getRightChild().getRecord() != null){
+            if(p.getRightChild().getRecord() != null){
                 return smallest(p.getRightChild());
             }
             else{
@@ -123,7 +123,7 @@ public class BinarySearchTree {
         public BSTNode predecessor(BSTNode r, Key k){
             BSTNode p = new BSTNode(null);
             p = get(rootNode, k);
-            if(!p.getLeftChild().getRecord() !=  null)
+            if(p.getLeftChild().getRecord() !=  null)
                 return largest(p.getLeftChild());
             else {
                 p = p.getParent();
