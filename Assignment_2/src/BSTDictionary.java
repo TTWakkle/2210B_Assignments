@@ -26,7 +26,7 @@
 
     //predecessor
         public Record predecessor(Key k) {
-            return bst.successor(bst.getRoot(), k).getRecord();
+            return bst.predecessor(bst.getRoot(), k).getRecord();
         }
     
     //smallest

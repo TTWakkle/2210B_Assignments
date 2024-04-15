@@ -111,7 +111,7 @@ public class BinarySearchTree {
             }
             else{
                 p = p.getParent();
-                while((p != null) && (p.getRecord().getKey().compareTo(k) == -1)){
+                while((p != null) && (p.getRecord().getKey().compareTo(k) == 1)){
                     p = p.getParent();
                 }
                 return p;
@@ -122,11 +122,11 @@ public class BinarySearchTree {
         public BSTNode predecessor(BSTNode r, Key k){
             BSTNode p = new BSTNode(null);
             p = get(rootNode, k);
-            if(p.getLeftChild().getRecord() !=  null)
+            if(p.getLeftChild().getRecord() != null)
                 return largest(p.getLeftChild());
             else {
                 p = p.getParent();
-                while((p != null) && (p.getRecord().getKey().compareTo(k) == 1)){
+                while((p != null) && (p.getRecord().getKey().compareTo(k) == -1)){
                     p = p.getParent();
                 }
                 return p;

@@ -23,7 +23,7 @@ public class Key {
      * @param k
      * @return 0 || -1 || 1 */
         public int compareTo(Key k){
-            if(label == k.getLabel() && type == k.getType())
+            if((k.getLabel().compareTo(label) == 0) && type == k.getType())
                 return 0;
             else if((k.getLabel().compareTo(label) < 0) || ((k.getLabel().compareTo(label) == 0) && k.getType() < type))
                 return -1;
