@@ -25,7 +25,7 @@ public class Key {
         public int compareTo(Key k){
             if(label == k.getLabel() && type == k.getType())
                 return 0;
-            else if( (label.compareTo(k.getLabel()) == -1) || (label == k.getLabel() && type <k.getType()) )
+            else if((k.getLabel().compareTo(label) < 0) || ((k.getLabel().compareTo(label) == 0) && k.getType() < type))
                 return -1;
             else
                 return 1;

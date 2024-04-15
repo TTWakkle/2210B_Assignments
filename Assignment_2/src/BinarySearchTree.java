@@ -19,14 +19,13 @@ public class BinarySearchTree {
             if (r.isLeaf())
                 return r;
             else{
-                switch (r.getRecord().getKey().compareTo(k)) {
-                    case 0:
-                        return r;
-                    case -1:
-                        return get(r.getRightChild(), k);
-                    default:
-                        return get(r.getLeftChild(), k);
-                }
+                int cmp  = r.getRecord().getKey().compareTo(k);
+                if(cmp == 0)
+                    return r;
+                else if(cmp == -1)
+                    return get(r.getLeftChild(), k);
+                else
+                    return get(r.getRightChild(), k);
             }
         }
 
@@ -72,7 +71,7 @@ public class BinarySearchTree {
                     pp = p.getParent();
                     if(p.getRightChild().getRecord() == null){
                         c = p.getLeftChild();
-                        if(pp.getRecord() != null){
+                        if(pp != null){
                             if(pp.getLeftChild().getRecord() == p.getRecord())
                                 pp.setLeftChild(c);
                             else
@@ -84,7 +83,7 @@ public class BinarySearchTree {
                     }
                     else if(p.getLeftChild().getRecord() == null){
                         c = p.getRightChild();
-                        if(pp.getRecord() != null){
+                        if(pp != null){
                             if(pp.getLeftChild().getRecord() == p.getRecord())
                                 pp.setLeftChild(c);
                             else
@@ -112,7 +111,7 @@ public class BinarySearchTree {
             }
             else{
                 p = p.getParent();
-                while((p.getRecord() != null) && (p.getRecord().getKey().compareTo(k) == -1)){
+                while((p != null) && (p.getRecord().getKey().compareTo(k) == -1)){
                     p = p.getParent();
                 }
                 return p;
@@ -127,7 +126,7 @@ public class BinarySearchTree {
                 return largest(p.getLeftChild());
             else {
                 p = p.getParent();
-                while((p.getRecord() != null) && (p.getRecord().getKey().compareTo(k) == 1)){
+                while((p != null) && (p.getRecord().getKey().compareTo(k) == 1)){
                     p = p.getParent();
                 }
                 return p;
@@ -141,7 +140,7 @@ public class BinarySearchTree {
             else {
                 BSTNode p = new BSTNode(null);
                 p = r;
-                while(!p.isLeaf()){
+                while(p.getRecord() != null){
                     p = p.getLeftChild();
                 }
                 return p.getParent();
@@ -155,7 +154,7 @@ public class BinarySearchTree {
             else {
                 BSTNode p = new BSTNode(null);
                 p = r;
-                while (!p.isLeaf()) {
+                while (p.getRecord() != null) {
                     p = p.getRightChild();
                 }
                 return p.getParent();
